@@ -198,7 +198,7 @@
     <section>
         <div class="mytim">
             <h1 class="text-center">
-                Smarts Team
+                AVerseShop Admin
             </h1>
             <div class="slide-container swiper">
                 <div class="slide-content">
@@ -250,7 +250,7 @@
                 <div class="col-md-6 px-0">
                     <div class="map">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8143303298716!2d107.6553878750785!3d-6.9127903676564895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e749856dbeab%3A0xf8fdb5c8ba13e918!2sSmarts%20Umrah%20Antapani%20Bandung!5e0!3m2!1sid!2sid!4v1723260953849!5m2!1sid!2sid"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.935578647762!2d107.637434!3d-6.8983086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e79ed5547621%3A0xe0e4fe272540b18b!2sANGGREK%20BANDUNG!5e0!3m2!1sen!2sid!4v1737161731835!5m2!1sen!2sid"
                             width="100%" height="550" style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>

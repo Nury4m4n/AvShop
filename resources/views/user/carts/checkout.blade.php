@@ -56,7 +56,7 @@
                 <div class="col-lg-7 col-md-12 mb-4">
                     <div class="card">
                         <div class="card-header bg-maroon text-white">
-                            <h4 class="mb-0 text-center">Informasi Pemesan & Penerima</h4>
+                            <h4 class="mb-0 text-center">Informasi Pemesan</h4>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('cart.checkout.process') }}" method="POST">
@@ -85,52 +85,6 @@
                                         <textarea id="orderer_address" name="orderer_address" class="form-control" required>{{ $pemesan->address }}</textarea>
                                     </div>
                                 </div>
-
-                                <!-- Informasi Penerima -->
-                                @php
-                                    $recipientNumber = 1; // Inisialisasi penomoran penerima
-                                @endphp
-
-                                @foreach ($cartItems as $item)
-                                    @for ($i = 0; $i < $item->quantity; $i++)
-                                        <div class="border p-3 mb-3">
-                                            <h5 class="text-muted">Penerima #{{ $recipientNumber }}</h5>
-                                            <h6 class="text-muted">Paket:
-                                                {{ $item->packageVariant->umrahPackage->main_package_name . ' ' . $item->packageVariant->variant }}
-                                            </h6>
-                                            <div class="form-group">
-                                                <label for="recipient_name_{{ $item->id }}_{{ $i }}">Nama
-                                                    Penerima</label>
-                                                <input type="text"
-                                                    id="recipient_name_{{ $item->id }}_{{ $i }}"
-                                                    name="recipient_name[]" class="form-control" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label
-                                                    for="recipient_email_{{ $item->id }}_{{ $i }}">Email</label>
-                                                <input type="email"
-                                                    id="recipient_email_{{ $item->id }}_{{ $i }}"
-                                                    name="recipient_email[]" class="form-control" value="{{ auth()->user()->email }}" required  readonly>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="recipient_phone_{{ $item->id }}_{{ $i }}">Nomor
-                                                    Telepon</label>
-                                                <input type="text"
-                                                    id="recipient_phone_{{ $item->id }}_{{ $i }}"
-                                                    name="recipient_phone[]" class="form-control" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label
-                                                    for="recipient_address_{{ $item->id }}_{{ $i }}">Alamat</label>
-                                                <textarea id="recipient_address_{{ $item->id }}_{{ $i }}" name="recipient_address[]"
-                                                    class="form-control" required></textarea>
-                                            </div>
-                                        </div>
-                                        @php
-                                            $recipientNumber++;
-                                        @endphp
-                                    @endfor
-                                @endforeach
 
                                 <button type="submit" class="btn btn-primary float-end">Buat Pesanan</button>
                             </form>

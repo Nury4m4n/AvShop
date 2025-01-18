@@ -19,9 +19,6 @@ class UpdateUmrahPackageRequest extends FormRequest
             'main_package_name' => 'nullable|string|max:255|unique:umrah_packages,main_package_name,' . $id,
             'image' => 'nullable|image|max:15360',
             'price' => 'required|numeric|min:0|max:99999999999999999999.99',
-            'user_id' => 'exists:users,id',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
         ];
     }
 }

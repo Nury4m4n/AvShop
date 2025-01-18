@@ -116,69 +116,6 @@
                         </div>
                     </div>
 
-                    <!-- Hotel Madinah dan Durasi -->
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <label for="hotel_madinah" class="form-label">Hotel di Madinah</label>
-                            <input type="text" name="hotel_madinah" class="form-control w-100" required
-                                placeholder="Hotel di Madinah"
-                                value="{{ old('hotel_madinah', $packageVariant->hotel_madinah) }}">
-                            @error('hotel_madinah')
-                                <div class="text-danger mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="col-md-6">
-                            <label for="duration_days" class="form-label">Durasi (Hari)</label>
-                            <input type="number" name="duration_days" class="form-control w-100" required
-                                placeholder="Durasi dalam hari"
-                                value="{{ old('duration_days', $packageVariant->duration_days) }}">
-                            @error('duration_days')
-                                <div class="text-danger mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <!-- Penerbangan dan Kereta -->
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <label for="flight" class="form-label">Penerbangan (Opsional)</label>
-                            <input type="text" name="flight" class="form-control w-100"
-                                placeholder="Detail penerbangan" value="{{ old('flight', $packageVariant->flight) }}">
-                            @error('flight')
-                                <div class="text-danger mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="col-md-6">
-                            <label for="train" class="form-label">Kereta (Opsional)</label>
-                            <input type="text" name="train" class="form-control w-100" placeholder="Detail kereta"
-                                value="{{ old('train', $packageVariant->train) }}">
-                            @error('train')
-                                <div class="text-danger mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <!-- Tahun Hijriyah dan Tanggal Keberangkatan -->
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <label for="hijri_year" class="form-label">Tahun Hijriyah</label>
-                            <input type="text" name="hijri_year" class="form-control w-100" required
-                                placeholder="Tahun Hijriyah"
-                                value="{{ old('hijri_year', $packageVariant->hijri_year) }}">
-                            @error('hijri_year')
-                                <div class="text-danger mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="col-md-6">
-                            <label for="departure_date" class="form-label">Tanggal Keberangkatan</label>
-                            <input type="date" name="departure_date" class="form-control w-100" required
-                                value="{{ old('departure_date', $packageVariant->departure_date) }}">
-                            @error('departure_date')
-                                <div class="text-danger mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-
                     <!-- Deskripsi -->
                     <div class="mb-4">
                         <label for="description" class="form-label">Deskripsi</label>

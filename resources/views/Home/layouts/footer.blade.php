@@ -2,8 +2,8 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-md-4 footer-logo">
-                <img src="{{ asset('img/alshafwah.png') }}" alt="Logo Perusahaan">
-                <div class="social-icons">
+                <img src="{{ asset('img/logo.png') }}" alt="Logo Perusahaan">
+                {{-- <div class="social-icons">
                     <a href="#" class="footer-link me-2" aria-label="Instagram">
                         <i class='bx bxl-instagram-alt'></i>
                     </a>
@@ -16,7 +16,7 @@
                     <a href="#" class="footer-link" aria-label="YouTube">
                         <i class='bx bxl-youtube'></i>
                     </a>
-                </div>
+                </div> --}}
             </div>
 
             <div class="col-md-4">
@@ -24,24 +24,23 @@
                 <table class="contact-table">
                     <tr>
                         <td><i class='bx bxs-map'></i></td>
-                        <td><a href="https://maps.app.goo.gl/a5vcmDt2k7acekiZ8" class="footer-link" target="_blank">
-                                Jl. Terusan Jakarta No.175A, Antapani Kulon, Kec. Antapani, Kota Bandung, Jawa Barat
-                                40291
+                        <td><a href="https://maps.app.goo.gl/8ANjx5P9pQynR6k18" class="footer-link" target="_blank">
+                                Neglasari, Kec. Cibeunying Kaler, Kota Bandung, Jawa Barat 40124
                             </a>
                         </td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                         <td><i class='bx bxs-envelope'></i></td>
                         <td>Email: <a href="mailto:smartsmudamandiri@gmail.com" class="footer-link"
                                 target="_blank">smartsmudamandiri@gmail.com</a>
                         </td>
-                    </tr>
+                    </tr> --}}
                     <tr>
                         <td><i class='bx bxs-phone'></i></td>
                         <td>Telp:
-                            <a href="https://api.whatsapp.com/send/?phone=6282130310130" class="footer-link"
+                            <a href="https://api.whatsapp.com/send/?phone=6282311377490" class="footer-link"
                                 target="_blank">
-                                +6282130310130
+                                +6282311377490
                         </td>
                     </tr>
                 </table>
@@ -59,11 +58,7 @@
                             <i class='bx bx-chevron-right'></i> Tentang Kami
                         </a>
                     </li>
-                    <!--<li>-->
-                    <!--    <a href="{{ route('home.promo') }}" class="footer-link" aria-label="Promo Menarik">-->
-                    <!--        <i class='bx bx-chevron-right'></i> Promo Menarik-->
-                    <!--    </a>-->
-                    <!--</li>-->
+
                     <li>
                         <a href="{{ route('home.umrahprogram') }}" class="footer-link" aria-label="Program Umrah">
                             <i class='bx bx-chevron-right'></i> Program Umrah
@@ -80,6 +75,7 @@
         </div>
     </div>
     <div class="footer-bottom text-center py-3">
-        <p>&copy; Smarts Umrah Bandung All rights reserved | Developed by Nuryaman.</p>
+        {{-- <p>&copy; AVerseShoop All rights reserved | Developed by Nuryaman.</p> --}}
+        <p>&copy; AVerseShoop All rights reserved</p>
     </div>
 </footer>

@@ -22,28 +22,11 @@
                                                 {{ $varian->umrahPackage->main_package_name . ' ' . $varian->variant }}
                                             </h5>
                                         @endif
-                                        @if ($varian->stock - $varian->stock_taken !== 0)
-                                            <p class="card-details">
-                                                <i class='bx bxs-user-check me-2'></i> Seat Masih Tersedia
-                                            </p>
-                                        @elseif ($varian->stock - $varian->stock_taken === 0)
-                                            <p class="card-details">
-                                                <i class='bx bxs-user-check me-2'></i> Seat Full
-                                            </p>
-                                        @endif
                                         <p class="card-details">
-                                            <i class='bx bx-calendar me-2'></i>
-                                            {{ \Carbon\Carbon::parse($varian->departure_date)->translatedFormat('d F Y') }}
+                                            <i class='bx bxs-user-check me-2'></i>
+                                            {{ $varian->stock - $varian->stock_taken }}
                                         </p>
-                                        <p class="card-details">
-                                            <i class='bx bxs-building'></i> {{ $varian->hotel_mecca }} (Makkah)
-                                        </p>
-                                        <p class="card-details">
-                                            <i class='bx bxs-building'></i> {{ $varian->hotel_madinah }} (Madinah)
-                                        </p>
-                                        <p class="card-details">
-                                            <i class='bx bxs-plane-alt'></i> {{ $varian->flight }} Airlines
-                                        </p>
+
 
                                         <small class="card-details">Harga Paket</small>
                                         <h5>IDR
@@ -55,12 +38,6 @@
                                             class="btn btn-success mt-2" style="border-radius: 20px; display: block;">
                                             Lihat Selengkapnya
                                         </a>
-                                        <!--<form action="{{ route('cart.add', $varian->id) }}" method="POST" class="mt-2">-->
-                                        <!--    @csrf-->
-                                        <!--    <button type="submit" class="btn btn-primary mt-2"-->
-                                        <!--        style="border-radius: 20px; display: block; width: 100%">Tambah ke-->
-                                        <!--        Keranjang</button>-->
-                                        <!--</form>-->
                                     </div>
                                 </div>
                             </div>

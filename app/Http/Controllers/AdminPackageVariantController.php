@@ -16,53 +16,50 @@ class AdminPackageVariantController extends Controller
         return view('admin.package_variants.show', compact('packageVariant'));
     }
 
-public function index(Request $request)
-{
-    // Ambil nilai filter dari request
-    $packageName = $request->input('package_name');
-    $variantName = $request->input('variant_name');
-    $departureDate = $request->input('departure_date');
+    public function index(Request $request)
+    {
+        // Ambil nilai filter dari request
+        $packageName = $request->input('package_name');
+        $variantName = $request->input('variant_name');
+        $departureDate = $request->input('departure_date');
 
-    // Bangun query dengan filter
-    $query = PackageVariant::with(['umrahPackage', 'cartsItem.order'])
-        ->when($packageName, function ($query, $packageName) {
-            return $query->whereHas('umrahPackage', function ($query) use ($packageName) {
-                $query->where('main_package_name', 'like', '%' . $packageName . '%');
-            });
-        })
-        ->when($variantName, function ($query, $variantName) {
-            return $query->where('variant', 'like', '%' . $variantName . '%');
-        })
-        ->when($departureDate, function ($query, $departureDate) {
-            return $query->whereDate('departure_date', $departureDate);
-        })
-        ->orderBy('created_at', 'desc');
-
-    // Paginate hasil filter
-    $variants = $query->paginate(20)->appends([
-        'package_name' => $packageName,
-        'variant_name' => $variantName,
-        'departure_date' => $departureDate
-    ]);
-
-    // Hitung total kuantitas dari variant yang memiliki order yang sudah dibayar
-    foreach ($variants as $variant) {
-        $variant->totalQuantity = $variant->cartsItem
-            ->filter(function ($cartItem) {
-                return $cartItem->order && $cartItem->order->status === 'Paid';
+        // Bangun query dengan filter
+        $query = PackageVariant::with(['umrahPackage', 'cartsItem.order'])
+            ->when($packageName, function ($query, $packageName) {
+                return $query->whereHas('umrahPackage', function ($query) use ($packageName) {
+                    $query->where('main_package_name', 'like', '%' . $packageName . '%');
+                });
             })
-            ->sum(function ($cartItem) {
-                return $cartItem->quantity;
-            });
+            ->when($variantName, function ($query, $variantName) {
+                return $query->where('variant', 'like', '%' . $variantName . '%');
+            })
+            ->orderBy('created_at', 'desc');
+
+        // Paginate hasil filter
+        $variants = $query->paginate(20)->appends([
+            'package_name' => $packageName,
+            'variant_name' => $variantName,
+            'departure_date' => $departureDate
+        ]);
+
+        // Hitung total kuantitas dari variant yang memiliki order yang sudah dibayar
+        foreach ($variants as $variant) {
+            $variant->totalQuantity = $variant->cartsItem
+                ->filter(function ($cartItem) {
+                    return $cartItem->order && $cartItem->order->status === 'Paid';
+                })
+                ->sum(function ($cartItem) {
+                    return $cartItem->quantity;
+                });
+        }
+
+        // Total data varian
+        $totalPage = $query->count();
+        $packages = UmrahPackage::all();
+
+        // Kembalikan hasil view
+        return view('admin.package_variants.index', compact('variants', 'packages', 'totalPage'));
     }
-
-    // Total data varian
-    $totalPage = $query->count();
-    $packages = UmrahPackage::all();
-
-    // Kembalikan hasil view
-    return view('admin.package_variants.index', compact('variants', 'packages', 'totalPage'));
-}
 
 
 
@@ -84,7 +81,7 @@ public function index(Request $request)
             'price' => 'required|numeric|min:0|max:99999999999999999999.99',
             'stock' => 'required|integer|min:1',
             'variant_image' => 'nullable|image|max:15360',
-            'description' => 'nullable|string', 
+            'description' => 'nullable|string',
         ]);
 
         $existingVariant = PackageVariant::where('umrah_package_id', $request->umrah_package_id)
@@ -101,13 +98,6 @@ public function index(Request $request)
         $variant->price = $request->price;
         $variant->stock = $request->stock;
         $variant->description = $request->input('description'); // Hapus tag HTML dari deskripsi
-        $variant->hotel_mecca = $request->hotel_mecca;
-        $variant->hotel_madinah = $request->hotel_madinah;
-        $variant->duration_days = $request->duration_days;
-        $variant->flight = $request->flight;
-        $variant->train = $request->train;
-        $variant->hijri_year = $request->hijri_year;
-        $variant->departure_date = $request->departure_date;
 
         if ($request->hasFile('variant_image')) {
             $variant->variant_image = $request->file('variant_image')->store('images', 'public');

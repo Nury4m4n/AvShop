@@ -120,8 +120,8 @@
                             <div class="d-flex align-items-center">
                                 <img src="{{ asset('img/feri.jpg') }}" alt="Default" class="testimonial-photo">
                                 <div>
-                                    <div class="testimonial-author">Feri Riana</div>
-                                    <div class="testimonial-author-date">1 Agustus 2024</div>
+                                    <div class="testimonial-author">Nuryaman</div>
+                                    <div class="testimonial-author-date">1 Januari 2025</div>
                                 </div>
                             </div>
                         </div>

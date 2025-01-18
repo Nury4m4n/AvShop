@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
-
-
     // Detail Paket
     public function paymentPage($orderId)
     {
@@ -27,7 +25,6 @@ class PaymentController extends Controller
         return view('user.payments.payment', compact('order', 'snapToken', 'cartItems'));
     }
 
-
     // Page Belum Bayar
     public function paymentList()
     {
@@ -39,6 +36,7 @@ class PaymentController extends Controller
             ->get();
         return view('user.payments.payment-list', compact('orders'));
     }
+
     public function PaymentHistory()
     {
         $userId = Auth::id();
@@ -57,18 +55,16 @@ class PaymentController extends Controller
             'orderer_email' => 'required|email|max:255',
             'orderer_phone' => 'required|string|max:20',
             'orderer_address' => 'required|string',
-            'recipient_name.*' => 'required|string|max:255',
-            'recipient_email.*' => 'required|email|max:255',
-            'recipient_phone.*' => 'required|string|max:20',
-            'recipient_address.*' => 'required|string',
         ]);
 
         $userId = Auth::id();
         $cartItems = Cart::where('user_id', $userId)->get();
+
         if ($cartItems->isEmpty()) {
             return redirect()->back()->with('error', 'Keranjang belanja kosong!');
         }
 
+        // Create the order with the orderer details
         $order = Order::create([
             'user_id' => $userId,
             'orderer_name' => $request->input('orderer_name'),
@@ -103,23 +99,6 @@ class PaymentController extends Controller
         $order->resi_number = $snapToken;
         $order->save();
 
-        // foreach ($cartItems as $cartItem) {
-        //     for ($i = 0; $i < $cartItem->quantity; $i++) {
-        //         CartItem::create([
-        //             'order_id' => $order->id,
-        //             'user_id' => $userId,
-        //             'package_variant_id' => $cartItem->package_variant_id,
-        //             'package' => $cartItem->packageVariant->umrahPackage->main_package_name . ' ' . $cartItem->packageVariant->variant,
-        //             'unit_price' => $cartItem->packageVariant->price + $cartItem->packageVariant->umrahPackage->price,
-        //             'quantity' => 1,
-        //             'recipient_name' => $request->input('recipient_name')[$i],
-        //             'recipient_email' => $request->input('recipient_email')[$i],
-        //             'recipient_phone' => $request->input('recipient_phone')[$i],
-        //             'recipient_address' => $request->input('recipient_address')[$i],
-        //         ]);
-        //     }
-        // }
-
         // Inisialisasi indeks global
         $recipientIndex = 0;
 
@@ -133,13 +112,11 @@ class PaymentController extends Controller
                     'package' => $cartItem->packageVariant->umrahPackage->main_package_name . ' ' . $cartItem->packageVariant->variant,
                     'unit_price' => $cartItem->packageVariant->price + $cartItem->packageVariant->umrahPackage->price,
                     'quantity' => 1,
-                    'recipient_name' => $request->input('recipient_name')[$recipientIndex],
-                    'recipient_email' => $request->input('recipient_email')[$recipientIndex],
-                    'recipient_phone' => $request->input('recipient_phone')[$recipientIndex],
-                    'recipient_address' => $request->input('recipient_address')[$recipientIndex],
+                    'recipient_name' => $request->input('orderer_name'),
+                    'recipient_email' => $request->input('orderer_email'),
+                    'recipient_phone' => $request->input('orderer_phone'),
+                    'recipient_address' => $request->input('orderer_address'),
                 ]);
-                // Increment indeks global setelah setiap penerima
-                $recipientIndex++;
             }
         }
 
@@ -147,7 +124,7 @@ class PaymentController extends Controller
         return redirect()->route('payment.page', $order->id);
     }
 
-    // Collback Midreans
+    // Callback Midtrans
     public function callback(Request $request)
     {
         $serverKey = config('midtrans.server_key');

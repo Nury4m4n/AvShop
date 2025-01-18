@@ -1,7 +1,7 @@
 <div class="navbar-brand">
     <div class="logo">
         <a href="{{ route('welcome') }}">
-            <img src="{{ asset('img/logo.jpg') }}" alt="Smarts Umrah Bandung">
+            <img src="{{ asset('img/navbar.png') }}" alt="Smarts Umrah Bandung">
         </a>
     </div>
     <button class="menu-toggle" aria-label="Toggle menu">
@@ -11,31 +11,19 @@
         <ul>
             <li>
                 <td>
-                    <i class='bx bx-check' style='color:#830f0f; font-weight: bold; font-size: 21px;'></i>
+                    <i class='bx bx-check' style='color:#451541; font-weight: bold; font-size: 21px;'></i>
                     <span class="title-brand">
                         Penjualan
                     </span>
                 </td>
                 <td>
-                    <p class="title-brand2">10.000+</p>
+                    <p class="title-brand2">1.000+</p>
                 </td>
             </li>
+
             <li>
                 <td>
-                    <i class='bx bx-check' style='color:#830f0f; font-weight: bold; font-size: 21px;'></i>
-                    <span class="title-brand">
-                        Toko Resmi
-                    </span>
-                </td>
-                <td>
-                    <p class="title-brand2">
-                        Memiliki NIB
-                    </p>
-                </td>
-            </li>
-            <li>
-                <td>
-                    <i class='bx bx-check' style='color:#830f0f; font-weight: bold; font-size: 21px;'></i>
+                    <i class='bx bx-check' style='color:#451541; font-weight: bold; font-size: 21px;'></i>
                     <span class="title-brand">
                         No 1 Di Bandung
                     </span>

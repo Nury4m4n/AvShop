@@ -47,6 +47,7 @@ class AdminUmrahPackageController extends Controller
 
         $package = new UmrahPackage();
         $package->main_package_name = $request->main_package_name;
+        $package->price = $request->price;
 
         if ($request->hasFile('image')) {
             $package->image = $request->file('image')->store('brosur', 'public');

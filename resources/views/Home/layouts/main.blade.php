@@ -93,7 +93,7 @@
     @include('Home.layouts.footer')
 
     {{-- Loading Overlay --}}
-    <div id="loading" class="loading-overlay">
+    {{-- <div id="loading" class="loading-overlay">
         <div class="dot-spinner">
             <div class="load"></div>
             <div class="load"></div>
@@ -104,7 +104,7 @@
             <div class="load"></div>
             <div class="load"></div>
         </div>
-    </div>
+    </div> --}}
 
     {{-- SweetAlert2 JavaScript --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

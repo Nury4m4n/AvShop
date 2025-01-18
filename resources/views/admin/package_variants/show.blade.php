@@ -43,23 +43,7 @@
                             <i class='bx bxs-tag fs-5 me-2'></i> Harga Akhir: Rp
                             {{ number_format($packageVariant->umrahPackage->price + $packageVariant->price, 0, ',', '.') }}
                         </p>
-                        <p class="font-weight-bold">
-                            <i class='bx bxs-calendar-check me-2'></i> Durasi: {{ $packageVariant->duration_days }} hari
-                        </p>
-                        <p class="font-weight-bold">
-                            <i class='bx bxs-plane-alt me-2'></i>Penerbangan: {{ $packageVariant->flight }}
-                        </p>
-                        <p class="font-weight-bold">
-                            <i class='bx bx-train me-2'></i> Kereta:
-                            {{ $packageVariant->train ?? 'Tidak ada detail kereta' }}
-                        </p>
-                        <p class="font-weight-bold">
-                            <i class='bx bxs-calendar-alt me-2'></i> Tanggal Keberangkatan:
-                            {{ \Carbon\Carbon::parse($packageVariant->departure_date)->format('d-m-Y') }}
-                        </p>
-                        <p class="font-weight-bold">
-                            <i class='bx bx-book me-2'></i> Tahun Hijriyah: {{ $packageVariant->hijri_year }}
-                        </p>
+                       
                     </div>
                 </div>
 

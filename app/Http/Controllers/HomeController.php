@@ -55,81 +55,18 @@ class HomeController extends Controller
             )
         ]);
     }
-
-    private function getPromoStatus($promo, $currentDateTime)
-    {
-        $closingTime = Carbon::parse($promo->closing_hour);
-        $promoDate = Carbon::parse($promo->start_date);
-        $openingTime = Carbon::parse($promo->opening_hour);
-
-        $isExpired = $currentDateTime > $promoDate->setTimeFromTimeString($openingTime->toTimeString()) &&
-            $currentDateTime > $promoDate->setTimeFromTimeString($closingTime->toTimeString());
-        $isOngoing = $currentDateTime > $promoDate->setTimeFromTimeString($openingTime->toTimeString()) &&
-            $currentDateTime < $promoDate->setTimeFromTimeString($closingTime->toTimeString());
-        $isComingSoon = $currentDateTime < $promoDate;
-
-        if ($isExpired) {
-            return 'expired';
-        } elseif ($isOngoing) {
-            return 'ongoing';
-        } elseif ($isComingSoon) {
-            return 'comingSoon';
-        }
-
-        return null;
-    }
-
     public function index()
     {
         $umrahPackages = UmrahPackage::with('packageVariants')->get();
-        $currentDateTime = now();
-
-        $expiredPackages = [];
-        $ongoingPackages = [];
-        $comingSoonPackages = [];
-
-        foreach ($umrahPackages as $umrahPackage) {
-            $packageStatus = $this->getUmrahPackageStatus($umrahPackage, $currentDateTime);
-
-            if ($packageStatus === 'expired') {
-                $expiredPackages[] = $umrahPackage;
-            } elseif ($packageStatus === 'ongoing') {
-                $ongoingPackages[] = $umrahPackage;
-            } elseif ($packageStatus === 'comingSoon') {
-                $comingSoonPackages[] = $umrahPackage;
-            }
-        }
 
         return view('Home.pages.umrahprogram.umrahprogram', [
-            'expiredPackages' => $expiredPackages,
-            'ongoingPackages' => $ongoingPackages,
-            'comingSoonPackages' => $comingSoonPackages,
+            'umrahPackages' => $umrahPackages,
             'meta' => $this->getMetaData(
                 'Paket Umrah | Smarts Umrah Bandung',
                 'Temukan Paket Umrah yang Tepat untuk Kebutuhan Anda di Smart Umrah Bandung',
                 asset('img/welcome.jpg')
             )
         ]);
-    }
-
-    private function getUmrahPackageStatus($umrahPackage, $currentDateTime)
-    {
-        $startDate = Carbon::parse($umrahPackage->start_date);
-        $endDate = Carbon::parse($umrahPackage->end_date);
-
-        $isExpired = $currentDateTime > $endDate;
-        $isOngoing = $currentDateTime >= $startDate && $currentDateTime <= $endDate;
-        $isComingSoon = $currentDateTime < $startDate;
-
-        if ($isExpired) {
-            return 'expired';
-        } elseif ($isOngoing) {
-            return 'ongoing';
-        } elseif ($isComingSoon) {
-            return 'comingSoon';
-        }
-
-        return null;
     }
 
     public function variants($packageId)

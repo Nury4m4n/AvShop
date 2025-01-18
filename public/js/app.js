@@ -47,7 +47,7 @@ function sendToWhatsApp() {
         alert('Invalid code! Please try again.');
         return;
     }
-    const whatsappURL = `https://wa.me/6281214556624?text=Nama%3A%20${name}%0AMessage%3A%20${message}`;
+    const whatsappURL = `https://wa.me/6282311377490?text=Nama%3A%20${name}%0AMessage%3A%20${message}`;
     window.open(whatsappURL, '_blank');
     correctCaptcha = null;
     generateCaptcha();

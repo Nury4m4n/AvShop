@@ -3,16 +3,16 @@
 @section('content')
     <div class="container py-5">
         <div class="row">
-             <!--Grid 1: Pesanan dan Informasi Pemesan -->
-            <div class="col-lg-6 col-md-12 mb-4">
+            <!--Grid: Pesanan dan Informasi Pemesan -->
+            <div class="col-lg-12 mb-4">
                 <div class="card shadow-sm">
                     <div class="card-header bg-maroon text-white text-center">
                         <h4 class="mb-0">Detail Pesanan dan Informasi Pemesan</h4>
                     </div>
                     <div class="card-body">
-                         <!-- Ringkasan Pesanan -->
+                        <!-- Ringkasan Pesanan -->
                         <h5 class="fw-bold">Ringkasan Pesanan</h5>
-                        
+
                         @php
                             // Kelompokkan item berdasarkan package_variant_id
                             $groupedCartItems = $cartItems->groupBy('package_variant_id');
@@ -68,9 +68,8 @@
                                 ) }}</strong>
                             </span>
                         </div>
-                        
 
-                         <!-- Informasi Pemesan -->
+                        <!-- Informasi Pemesan -->
                         <h5 class="fw-bold">Informasi Pemesan</h5>
                         <div class="border p-3 mb-3">
                             <div class="form-group mb-3">
@@ -93,55 +92,6 @@
                                 <textarea id="orderer_address" name="orderer_address" class="form-control" rows="3" readonly>{{ $order->orderer_address }}</textarea>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-          
-
-            <!-- Grid 2: Informasi Penerima -->
-            <div class="col-lg-6 col-md-12">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-maroon text-white text-center">
-                        <h4 class="mb-0">Informasi Penerima</h4>
-                    </div>
-                    <div class="card-body">
-                        @foreach ($groupedCartItems as $variantId => $items)
-                            @foreach ($items as $item)
-                                @for ($i = 0; $i < $item->quantity; $i++)
-                                    <div class="border p-3 mb-3">
-                                        <h6 class="text-muted">Paket:
-                                            {{ $item->packageVariant->umrahPackage->main_package_name . ' ' . $item->packageVariant->variant }}
-                                        </h6>
-                                        <div class="form-group mb-3">
-                                            <label for="recipient_name_{{ $item->id }}_{{ $i }}">Nama
-                                                Penerima</label>
-                                            <input type="text" id="recipient_name_{{ $item->id }}_{{ $i }}"
-                                                name="recipient_name[]" class="form-control"
-                                                value="{{ $item->recipient_name }}" readonly>
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="recipient_email_{{ $item->id }}_{{ $i }}">Email</label>
-                                            <input type="email" id="recipient_email_{{ $item->id }}_{{ $i }}"
-                                                name="recipient_email[]" class="form-control"
-                                                value="{{ $item->recipient_email }}" readonly>
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="recipient_phone_{{ $item->id }}_{{ $i }}">Nomor
-                                                Telepon</label>
-                                            <input type="text" id="recipient_phone_{{ $item->id }}_{{ $i }}"
-                                                name="recipient_phone[]" class="form-control"
-                                                value="{{ $item->recipient_phone }}" readonly>
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label
-                                                for="recipient_address_{{ $item->id }}_{{ $i }}">Alamat</label>
-                                            <textarea id="recipient_address_{{ $item->id }}_{{ $i }}" name="recipient_address[]"
-                                                class="form-control" rows="3" readonly>{{ $item->recipient_address }}</textarea>
-                                        </div>
-                                    </div>
-                                @endfor
-                            @endforeach
-                        @endforeach
                     </div>
                 </div>
             </div>
