@@ -57,8 +57,6 @@ class UmrahPackageReportController extends Controller
     {
         // Mengambil input filter dari request
         $packageName = $request->input('package_name');
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
 
         // Membangun query dasar untuk paket Umrah
         $query = UmrahPackage::with('packageVariants');
@@ -66,14 +64,6 @@ class UmrahPackageReportController extends Controller
         // Menambahkan filter jika ada input
         if ($packageName) {
             $query->where('main_package_name', 'LIKE', '%' . $packageName . '%');
-        }
-
-        if ($startDate) {
-            $query->where('start_date', '>=', $startDate);
-        }
-
-        if ($endDate) {
-            $query->where('end_date', '<=', $endDate);
         }
 
         // Mendapatkan data paket Umrah berdasarkan filter

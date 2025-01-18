@@ -31,24 +31,31 @@
             margin-bottom: 5px;
             text-align: left;
         }
- .modal {
-        z-index: 9999; /* Default Bootstrap z-index untuk modal */
-    }
 
-    .modal-backdrop {
-        z-index: 9998; /* Backdrop tetap di bawah modal */
-    }
+        .modal {
+            z-index: 9999;
+            /* Default Bootstrap z-index untuk modal */
+        }
+
+        .modal-backdrop {
+            z-index: 9998;
+            /* Backdrop tetap di bawah modal */
+        }
+
         .modal-dialog {
-            max-width: fit-content; /* Modal menyesuaikan lebar konten */
+            max-width: fit-content;
+            /* Modal menyesuaikan lebar konten */
             margin: auto;
         }
 
         .modal-body table {
-            width: auto; /* Tabel hanya selebar konten */
+            width: auto;
+            /* Tabel hanya selebar konten */
             border-collapse: collapse;
         }
 
-        .modal-body table th, .modal-body table td {
+        .modal-body table th,
+        .modal-body table td {
             border: 1px solid #dee2e6;
             padding: 8px;
             text-align: left;
@@ -60,7 +67,7 @@
     </style>
 
     <div class="container-fluid mt-4">
-        <h1 class="text-center mb-4">Status Pesanan</h1>
+        <h1 class="text-center mb-4">Daftar Pesanan</h1>
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-0">
                 <h5 class="m-0 text-dark">Daftar Pesanan</h5>
@@ -108,27 +115,28 @@
                                     <td>{{ $order->orderer_name }}</td>
                                     <td>
                                         <!-- Button untuk membuka modal -->
-                                        <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#orderModal{{ $order->id }}">
+                                        <button class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#orderModal{{ $order->id }}">
                                             Detail
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="orderModal{{ $order->id }}" tabindex="-1" aria-labelledby="orderModalLabel{{ $order->id }}" aria-hidden="true">
+                                        <div class="modal fade" id="orderModal{{ $order->id }}" tabindex="-1"
+                                            aria-labelledby="orderModalLabel{{ $order->id }}" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="orderModalLabel{{ $order->id }}">Detail Pesanan untuk {{ $order->orderer_name }}</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <h5 class="modal-title" id="orderModalLabel{{ $order->id }}">
+                                                            Detail: {{ $order->orderer_name }}</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <table>
                                                             <thead>
                                                                 <tr>
                                                                     <th>No</th>
-                                                                    <th>Nama Penerima</th>
-                                                                    <th>No HP</th>
                                                                     <th>Paket</th>
-                                                                    <!--<th>Quantity</th>-->
                                                                     <th>Harga Satuan</th>
                                                                 </tr>
                                                             </thead>
@@ -136,16 +144,12 @@
                                                                 @php $totalQuantity = 0; @endphp
                                                                 @foreach ($order->cartItems as $item)
                                                                     <tr>
-                                                                         <td class="text-center">{{ $loop->iteration }}</td>
-                                                                        <td>{{ $item->recipient_name }}</td>
-                                                                        <td>
-                                                                            <a href="https://api.whatsapp.com/send/?phone=62{{ $item->recipient_phone }}">
-                                                                                {{ $item->recipient_phone }}
-                                                                            </a>
-                                                                        </td>
+                                                                        <td class="text-center">{{ $loop->iteration }}</td>
+
                                                                         <td>{{ $item->package }}</td>
                                                                         <!--<td>{{ $item->quantity }}</td>-->
-                                                                        <td>Rp{{ number_format($item->unit_price, 0, ',', '.') }}</td>
+                                                                        <td>Rp{{ number_format($item->unit_price, 0, ',', '.') }}
+                                                                        </td>
                                                                     </tr>
                                                                     @php $totalQuantity += $item->quantity; @endphp
                                                                 @endforeach
@@ -156,7 +160,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Tutup</button>
                                                     </div>
                                                 </div>
                                             </div>

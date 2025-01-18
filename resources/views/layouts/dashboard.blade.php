@@ -43,7 +43,7 @@
         </div>
 
         <!-- Form Pilihan Paket Utama -->
-        <form method="GET" action="{{ route('dashboard') }}" class="mb-4">
+        {{-- <form method="GET" action="{{ route('dashboard') }}" class="mb-4">
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
@@ -63,10 +63,10 @@
                     <button type="submit" class="btn btn-primary w-100">Tampilkan</button>
                 </div>
             </div>
-        </form>
+        </form> --}}
 
         <!-- Grafik Pendapatan -->
-        <div class="row mb-4">
+        {{-- <div class="row mb-4">
             <div class="col-md-12">
                 <h3 class="mb-4 text-center font-weight-bold">
                     {{ $selectedPaketId ? 'Pendapatan Varian Paket Umrah' : 'Pendapatan Paket Umrah' }}
@@ -75,36 +75,7 @@
                     <canvas id="salesRevenueChart"></canvas>
                 </div>
             </div>
-        </div>
-
-        <!-- Laporan Stok Varian Paket -->
-        <!--<div class="row">-->
-        <!--    <div class="col-md-12">-->
-        <!--        <h3 class="mb-4 text-center font-weight-bold">Ketersediaan Stok Varian Paket</h3>-->
-        <!--        <div class="table-responsive">-->
-        <!--            <table class="table table-striped table-bordered table-hover">-->
-        <!--                <thead class="table-dark">-->
-        <!--                    <tr>-->
-        <!--                        <th>Paket Umrah</th>-->
-        <!--                        <th>Varian</th>-->
-        <!--                        <th>kursi tersedia</th>-->
-        <!--                        <th>kursi Terpakai</th>-->
-        <!--                    </tr>-->
-        <!--                </thead>-->
-        <!--                <tbody>-->
-        <!--                    @foreach ($variants as $variant)-->
-        <!--                        <tr>-->
-        <!--                            <td>{{ $variant->umrahPackage->main_package_name }}</td>-->
-        <!--                            <td>{{ $variant->variant }}</td>-->
-        <!--                            <td>{{ $variant->stock }}</td>-->
-        <!--                            <td>{{ $variant->totalQuantity }}</td>-->
-        <!--                        </tr>-->
-        <!--                    @endforeach-->
-        <!--                </tbody>-->
-        <!--            </table>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--</div>-->
+        </div> --}}
 
         <!-- Script untuk Grafik -->
         <script>

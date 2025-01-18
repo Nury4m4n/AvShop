@@ -19,10 +19,10 @@
         </script>
     @endif
     <div class="container mt-4">
-        <h1 class="mb-4 text-center">Edit Varian Paket Umrah</h1>
+        <h1 class="mb-4 text-center">Edit Varian Anggrek</h1>
         <div class="card">
             <div class="card-header">
-                <h5 class="m-0">Form Edit Varian Paket Umrah</h5>
+                <h5 class="m-0">Form Edit Varian Anggrek
             </div>
             <div class="card-body">
                 <form action="{{ route('package-variants.update', $packageVariant->id) }}" method="POST"
@@ -33,9 +33,9 @@
                     <!-- Pemilihan Paket Umrah dan Varian -->
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <label for="umrah_package_id" class="form-label">Pilih Paket Umrah</label>
+                            <label for="umrah_package_id" class="form-label">Pilih Anggrek</label>
                             <select name="umrah_package_id" class="form-select w-100" required>
-                                <option value="" disabled selected>Pilih paket umrah</option>
+                                <option value="" disabled selected>Pilih Anggrek</option>
                                 @foreach ($packages as $package)
                                     <option value="{{ $package->id }}"
                                         {{ old('umrah_package_id', $packageVariant->umrah_package_id) == $package->id ? 'selected' : '' }}>
@@ -48,92 +48,74 @@
                         </div>
                         <div class="col-md-6">
                             <label for="variant" class="form-label">Nama Varian</label>
-                            <select name="variant" class="form-select w-100" required onchange="updatePrice();">
-                                <option value="" disabled selected>Pilih varian paket</option>
-                                <option value="Up Double"
-                                    {{ old('variant', $packageVariant->variant) == 'Up Double' ? 'selected' : '' }}>Up
-                                    Double
-                                </option>
-                                <option value="Up Triple"
-                                    {{ old('variant', $packageVariant->variant) == 'Up Triple' ? 'selected' : '' }}>Up
-                                    Triple
-                                </option>
-                                <option value="No Variant"
-                                    {{ old('variant', $packageVariant->variant) == 'No Variant' ? 'selected' : '' }}>Tanpa
-                                    Varian
-                                </option>
-                            </select>
+                            <input type="text" name="variant" class="form-control w-100"
+                                placeholder="Masukan Nama Varian" value="{{ $packageVariant->variant }}">
                             @error('variant')
                                 <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror
                         </div>
-                    </div>
-
-                    <!-- Brosur dan Biaya Tambahan -->
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <label for="variant_image" class="form-label">Brosur</label>
-                            <input type="file" name="variant_image" class="form-control w-100" accept="image/*">
-                            @if ($packageVariant->variant_image)
-                                <div class="mt-2">
-                                    <img src="{{ asset('storage/' . $packageVariant->variant_image) }}" alt="Foto Anggota"
-                                        class="img-thumbnail" style="max-width: 100px;">
-                                </div>
-                            @endif
-                            @error('variant_image')
-                                <div class="text-danger mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="col-md-6">
-                            <label for="price" class="form-label">Harga</label>
-                            <input type="text" id="price" name="price" class="form-control" required
-                                placeholder="Harga varian" oninput="formatCurrency(this)" maxlength="20"
-                                value="{{ old('price', number_format($packageVariant->price, 0, ',', '.')) }}">
-                            @error('price')
-                                <div class="text-danger mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <!-- Kursi Tersedia dan Hotel -->
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <label for="stock" class="form-label">Kursi Tersedia</label>
-                            <input type="number" name="stock" class="form-control w-100" required
-                                placeholder="Stok varian" value="{{ old('stock', $packageVariant->stock) }}">
-                            @error('stock')
-                                <div class="text-danger mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="col-md-6">
-                            <label for="hotel_mecca" class="form-label">Hotel di Mekkah</label>
-                            <input type="text" name="hotel_mecca" class="form-control w-100" required
-                                placeholder="Hotel di Mekkah"
-                                value="{{ old('hotel_mecca', $packageVariant->hotel_mecca) }}">
-                            @error('hotel_mecca')
-                                <div class="text-danger mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <!-- Deskripsi -->
-                    <div class="mb-4">
-                        <label for="description" class="form-label">Deskripsi</label>
-                        <input id="description" type="hidden" name="description"
-                            value="{{ old('description', $packageVariant->description) }}">
-                        <trix-editor input="description"></trix-editor>
-                        @error('description')
+                        @error('variant')
                             <div class="text-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
-
-                    <div class="d-flex justify-content-between">
-                        <a href="{{ route('package-variants.index') }}" class="btn btn-secondary">Kembali</a>
-                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                    </div>
-                </form>
             </div>
+
+            <!-- Brosur dan Biaya Tambahan -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label for="variant_image" class="form-label">Gambar Varian</label>
+                    <input type="file" name="variant_image" class="form-control w-100" accept="image/*">
+                    @if ($packageVariant->variant_image)
+                        <div class="mt-2">
+                            <img src="{{ asset('storage/' . $packageVariant->variant_image) }}" alt="Foto Anggota"
+                                class="img-thumbnail" style="max-width: 100px;">
+                        </div>
+                    @endif
+                    @error('variant_image')
+                        <div class="text-danger mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-6">
+                    <label for="price" class="form-label">Harga</label>
+                    <input type="text" id="price" name="price" class="form-control" required
+                        placeholder="Harga varian" oninput="formatCurrency(this)" maxlength="20"
+                        value="{{ old('price', number_format($packageVariant->price, 0, ',', '.')) }}">
+                    @error('price')
+                        <div class="text-danger mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- Kursi Tersedia dan Hotel -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label for="stock" class="form-label">Stok Tersedia</label>
+                    <input type="number" name="stock" class="form-control w-100" required placeholder="Stok varian"
+                        value="{{ old('stock', $packageVariant->stock) }}">
+                    @error('stock')
+                        <div class="text-danger mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- Deskripsi -->
+            <div class="mb-4">
+                <label for="description" class="form-label">Deskripsi</label>
+                <input id="description" type="hidden" name="description"
+                    value="{{ old('description', $packageVariant->description) }}">
+                <trix-editor input="description"></trix-editor>
+                @error('description')
+                    <div class="text-danger mt-2">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a href="{{ route('package-variants.index') }}" class="btn btn-secondary">Kembali</a>
+                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+            </div>
+            </form>
         </div>
+    </div>
     </div>
     <style>
         /* Menghilangkan tombol upload gambar dari Trix Editor */
@@ -156,21 +138,6 @@
             let value = input.value.replace(/[^\d]/g, '');
             let formattedValue = new Intl.NumberFormat().format(value);
             input.value = formattedValue;
-        }
-
-        function updatePrice() {
-            var variant = document.querySelector('select[name="variant"]').value;
-            var priceInput = document.querySelector('input[name="price"]');
-
-            if (variant === "Up Triple") {
-                priceInput.value = 1500000;
-            } else if (variant === "Up Double") {
-                priceInput.value = 3500000;
-            } else if (variant === "No Variant") {
-                priceInput.value = 0;
-            }
-            priceInput.disabled = false; // Aktifkan input harga
-            formatCurrency(priceInput); // Format harga
         }
     </script>
 @endsection

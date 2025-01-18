@@ -61,7 +61,7 @@
 
                     <li>
                         <a href="{{ route('home.umrahprogram') }}" class="footer-link" aria-label="Program Umrah">
-                            <i class='bx bx-chevron-right'></i> Program Umrah
+                            <i class='bx bx-chevron-right'></i> Produk
                         </a>
                     </li>
                     <li>

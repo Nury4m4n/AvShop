@@ -13,7 +13,7 @@
                 <!-- Ringkasan Pesanan -->
                 <div class="col-lg-5 col-md-12 mb-4">
                     <div class="card">
-                        <div class="card-header bg-maroon text-white">
+                        <div class="card-header text-white" style="background-color: var(--maroon1)">
                             <h4 class="mb-0 text-center">Ringkasan Pesanan</h4>
                         </div>
                         <div class="card-body">
@@ -55,7 +55,7 @@
                 <!-- Informasi Pengiriman -->
                 <div class="col-lg-7 col-md-12 mb-4">
                     <div class="card">
-                        <div class="card-header bg-maroon text-white">
+                        <div class="card-header text-white" style="background-color: var(--maroon1)">
                             <h4 class="mb-0 text-center">Informasi Pemesan</h4>
                         </div>
                         <div class="card-body">

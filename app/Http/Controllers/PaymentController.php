@@ -89,6 +89,7 @@ class PaymentController extends Controller
             ],
             'customer_details' => [
                 'first_name' => $order->orderer_name,
+                'last_name' => '',
                 'email' => $order->orderer_email,
                 'phone' => $order->orderer_phone,
                 'address' => $order->orderer_address,
@@ -99,8 +100,6 @@ class PaymentController extends Controller
         $order->resi_number = $snapToken;
         $order->save();
 
-        // Inisialisasi indeks global
-        $recipientIndex = 0;
 
         // Simpan setiap penerima ke dalam CartItem
         foreach ($cartItems as $cartItem) {

@@ -18,33 +18,33 @@
     @endif
 
     <div class="container-fluid mt-4">
-        <h1 class="text-center mb-4">Daftar Anggota Tim</h1>
+        <h1 class="text-center mb-4">Daftar Admin</h1>
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between align-items-center bg-white border-0">
-                <h5 class="m-0 text-dark">Daftar Anggota Tim</h5>
+                <h5 class="m-0 text-dark">Daftar Admin</h5>
                 <a href="{{ route('teams.create') }}" class="btn btn-success btn-sm">
-                    Tambah Anggota Tim <i class='bx bx-plus'></i>
+                    Tambah<i class='bx bx-plus'></i>
                 </a>
             </div>
             <div class="card-body">
- <form method="GET" action="{{ route('teams.index') }}" class="mb-3">
-    <div class="row">
-        <div class="col-md-5 mb-3">
-            <label for="name" class="form-label">Nama Anggota</label>
-            <input type="text" id="name" name="name" class="form-control" placeholder="Cari berdasarkan nama"
-                value="{{ request()->get('name') }}">
-        </div>
-        <div class="col-md-5 mb-3">
-            <label for="position" class="form-label">Jabatan</label>
-            <input type="text" id="position" name="position" class="form-control" placeholder="Cari berdasarkan jabatan"
-                value="{{ request()->get('position') }}">
-        </div>
-        <div class="col-md-2 d-flex align-items-end mb-3">
-            <button type="submit" class="btn btn-primary  me-1">Filter</button>
-            <a href="{{ route('teams.index') }}" class="btn btn-secondary ">Reset</a>
-        </div>
-    </div>
-</form>
+                <form method="GET" action="{{ route('teams.index') }}" class="mb-3">
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label for="name" class="form-label">Nama Anggota</label>
+                            <input type="text" id="name" name="name" class="form-control"
+                                placeholder="Cari berdasarkan nama" value="{{ request()->get('name') }}">
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label for="position" class="form-label">Jabatan</label>
+                            <input type="text" id="position" name="position" class="form-control"
+                                placeholder="Cari berdasarkan jabatan" value="{{ request()->get('position') }}">
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end mb-3">
+                            <button type="submit" class="btn btn-primary  me-1">Filter</button>
+                            <a href="{{ route('teams.index') }}" class="btn btn-secondary ">Reset</a>
+                        </div>
+                    </div>
+                </form>
 
 
                 <div class="table-responsive">
@@ -98,7 +98,7 @@
                             @empty
                                 <tr>
                                     <td colspan="5" class="text-center">
-                                        <strong>Tidak Ada Data</strong> - Belum ada anggota tim yang ditambahkan.
+                                        <strong>Tidak Ada Data</strong> - Belum ada admin yang ditambahkan.
                                     </td>
                                 </tr>
                             @endforelse

@@ -19,10 +19,10 @@
         </script>
     @endif
     <div class="container-fluid mt-4">
-        <h1 class="text-center mb-4">Varian Paket Umrah</h1>
+        <h1 class="text-center mb-4">Varian Anggrek</h1>
         <div class="card mb-4">
             <div class="card-header bord d-flex justify-content-between align-items-center bg-white border-0">
-                <h5 class="m-0 text-dark">Daftar Varian Paket Umrah</h5>
+                <h5 class="m-0 text-dark">Daftar Varian Anggrek</h5>
                 <a href="{{ route('package-variants.create') }}" class="btn btn-success btn-sm">
                     Tambah<i class='bx bx-plus'></i>
                 </a>
@@ -31,12 +31,12 @@
             <div class="card-body">
                 <form action="{{ route('package-variants.index') }}" method="GET" class="mb-4">
                     <div class="row">
-                        <div class="col-md-4">
-                            <label for="package_name">Nama Paket</label>
-                            <input type="text" name="package_name" class="form-control" placeholder="Cari Nama Paket"
+                        <div class="col-md-5">
+                            <label for="package_name">Nama Anggrek</label>
+                            <input type="text" name="package_name" class="form-control" placeholder="Cari Nama Anggrek"
                                 value="{{ request('package_name') }}">
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-5">
                             <label for="variant_name">Nama Varian</label>
                             <input type="text" name="variant_name" class="form-control" placeholder="Cari Nama Varian"
                                 value="{{ request('variant_name') }}">
@@ -57,11 +57,11 @@
                             <tr>
                                 <th>No</th>
                                 <!--<th>Brosur</th>-->
-                                <th>Nama Paket</th>
+                                <th>Nama Anggrek</th>
                                 <th>Nama Varian</th>
                                 <th>Harga </th>
-                                <th>Seat Tersedia</th>
-                                <th>Seat Terisi</th>
+                                <th>Stok Tersedia</th>
+                                <th>Produk Terjual</th>
                                 <th>Aksi</th>
                             </tr>
 

@@ -19,10 +19,10 @@
         </script>
     @endif
     <div class="container mt-4">
-        <h1 class="mb-4 text-center">Tambah Varian Paket Umrah</h1>
+        <h1 class="mb-4 text-center">Tambah Varian Anggrek</h1>
         <div class="card">
             <div class="card-header">
-                <h5 class="m-0">Form Tambah Varian Paket Umrah</h5>
+                <h5 class="m-0">Form Tambah Varian Anggrek</h5>
             </div>
             <div class="card-body">
                 <form action="{{ route('package-variants.store') }}" method="POST" enctype="multipart/form-data"
@@ -32,9 +32,9 @@
                     <!-- Pemilihan Paket Umrah dan Varian -->
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <label for="umrah_package_id" class="form-label">Pilih Paket Umrah</label>
+                            <label for="umrah_package_id" class="form-label">Pilih Anggrek</label>
                             <select name="umrah_package_id" class="form-select w-100" required>
-                                <option value="" disabled selected>Pilih paket umrah</option>
+                                <option value="" disabled selected>Pilih paket Anggrek</option>
                                 @foreach ($packages as $package)
                                     <option value="{{ $package->id }}"
                                         {{ old('umrah_package_id') == $package->id ? 'selected' : '' }}>
@@ -47,8 +47,8 @@
                         </div>
                         <div class="col-md-6">
                             <label for="variant" class="form-label">Nama Varian</label>
-                            <input type="text" name="variant" class="form-control w-100" placeholder="Detail penerbangan"
-                                value="{{ old('variant') }}">
+                            <input type="text" name="variant" class="form-control w-100"
+                                placeholder="Masukan Nama Varian" value="{{ old('variant') }}" required>
                             @error('variant')
                                 <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -58,7 +58,7 @@
                     <!-- Brosur dan Biaya Tambahan -->
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <label for="variant_image" class="form-label">Brosur</label>
+                            <label for="variant_image" class="form-label">Gambar Varian</label>
                             <input type="file" name="variant_image" class="form-control w-100" accept="image/*" required>
                             @error('variant_image')
                                 <div class="text-danger mt-2">{{ $message }}</div>
@@ -77,7 +77,7 @@
                     <!-- Kursi Tersedia dan Hotel -->
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <label for="stock" class="form-label">Kursi Tersedia</label>
+                            <label for="stock" class="form-label">Stok Tersedia</label>
                             <input type="number" name="stock" class="form-control w-100" required
                                 placeholder="Stok varian" value="{{ old('stock') }}">
                             @error('stock')

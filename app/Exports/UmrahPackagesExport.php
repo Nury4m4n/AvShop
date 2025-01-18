@@ -8,7 +8,6 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithCustomStartCell;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
-use Carbon\Carbon;
 
 class UmrahPackagesExport implements FromCollection, WithHeadings, WithMapping, WithStyles, WithCustomStartCell
 {
@@ -27,11 +26,9 @@ class UmrahPackagesExport implements FromCollection, WithHeadings, WithMapping, 
         $rowNumber = 1;
 
         return $this->umrahPackages->flatMap(function ($umrahPackage) use (&$rowNumber) {
-            $startDateFormatted = Carbon::parse($umrahPackage->start_date)->translatedFormat('d F Y');
-            $endDateFormatted = Carbon::parse($umrahPackage->end_date)->translatedFormat('d F Y');
 
             // Iterasi pada packageVariants terkait dengan umrahPackage
-            return $umrahPackage->packageVariants->map(function ($variant) use (&$rowNumber, $umrahPackage, $startDateFormatted, $endDateFormatted) {
+            return $umrahPackage->packageVariants->map(function ($variant) use (&$rowNumber, $umrahPackage) {
                 // Menghitung kursi terjual
                 $variant->totalQuantity = $variant->cartsItem
                     ->filter(function ($cartItem) {
@@ -44,15 +41,13 @@ class UmrahPackagesExport implements FromCollection, WithHeadings, WithMapping, 
                 return [
                     'No' => $rowNumber++,
                     'Nama Paket' => $umrahPackage->main_package_name,
-                    'Harga Paket Utama' => 'Rp ' . number_format($umrahPackage->price, 0, ',', '.'),
+                    'Nama Varian' => $variant->variant,
+                    'Harga Dasar' => 'Rp ' . number_format($umrahPackage->price, 0, ',', '.'),
                     'Harga Tambahan' => 'Rp ' . number_format($variant->price, 0, ',', '.'),
                     'Harga Akhir' => 'Rp ' . number_format($umrahPackage->price + $variant->price, 0, ',', '.'),
-                    'Pembukaan Pendaftaran' => $startDateFormatted,
-                    'Penutupan Pendaftaran' => $endDateFormatted,
-                    'Varian' => $variant->variant,
-                    'Kursi tersedia' => $variant->stock,
-                    'Kursi terjual' => $variant->totalQuantity,
-                    'Sisa Kursi' => $variant->stock - $variant->totalQuantity,
+                    'Stok Tersedia' => $variant->stock,
+                    'Produk Terjual' => $variant->totalQuantity,
+                    'Sisa Stok' => $variant->stock - $variant->totalQuantity,
                 ];
             });
         });
@@ -66,15 +61,13 @@ class UmrahPackagesExport implements FromCollection, WithHeadings, WithMapping, 
         return [
             'No',
             'Nama Paket',
-            'Harga Paket Utama',
+            'Nama Varian',
+            'Harga Dasar',
             'Harga Tambahan',
             'Harga Akhir',
-            'Pembukaan Pendaftaran',
-            'Penutupan Pendaftaran',
-            'Varian',
-            'Kursi tersedia',
-            'Kursi terjual',
-            'Sisa Kursi',
+            'Stok Tersedia',
+            'Produk Terjual',
+            'Sisa Stok',
         ];
     }
 
@@ -86,15 +79,13 @@ class UmrahPackagesExport implements FromCollection, WithHeadings, WithMapping, 
         return [
             $row['No'],
             $row['Nama Paket'],
-            $row['Harga Paket Utama'],
+            $row['Nama Varian'],
+            $row['Harga Dasar'],
             $row['Harga Tambahan'],
             $row['Harga Akhir'],
-            $row['Pembukaan Pendaftaran'],
-            $row['Penutupan Pendaftaran'],
-            $row['Varian'],
-            $row['Kursi tersedia'],
-            $row['Kursi terjual'],
-            $row['Sisa Kursi'],
+            $row['Stok Tersedia'],
+            $row['Produk Terjual'],
+            $row['Sisa Stok'],
         ];
     }
 
@@ -104,10 +95,10 @@ class UmrahPackagesExport implements FromCollection, WithHeadings, WithMapping, 
     public function styles(Worksheet $sheet)
     {
         // Merge cells untuk judul
-        $sheet->mergeCells('A1:K1');
+        $sheet->mergeCells('A1:I1');
 
         // Set gaya untuk judul
-        $sheet->setCellValue('A1', 'Laporan Daftar Paket Umrah dan Varian');
+        $sheet->setCellValue('A1', 'Laporan Penjualan AverseShop');
         $sheet->getStyle('A1')->applyFromArray([
             'font' => [
                 'bold' => true,
@@ -121,7 +112,7 @@ class UmrahPackagesExport implements FromCollection, WithHeadings, WithMapping, 
         ]);
 
         // Set gaya untuk header kolom
-        $sheet->getStyle('A2:K2')->applyFromArray([
+        $sheet->getStyle('A2:I2')->applyFromArray([
             'font' => [
                 'bold' => true,
                 'color' => ['argb' => 'FFFFFFFF'], // Teks putih
@@ -133,7 +124,7 @@ class UmrahPackagesExport implements FromCollection, WithHeadings, WithMapping, 
             ],
             'fill' => [
                 'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
-                'color' => ['argb' => '800000'], // Warna maroon
+                'color' => ['argb' => '78036e'], // Warna maroon
             ],
             'borders' => [
                 'allBorders' => [
@@ -143,7 +134,7 @@ class UmrahPackagesExport implements FromCollection, WithHeadings, WithMapping, 
         ]);
 
         // Set gaya untuk data tabel
-        $sheet->getStyle('A3:K' . ($sheet->getHighestRow()))->applyFromArray([
+        $sheet->getStyle('A3:I' . ($sheet->getHighestRow()))->applyFromArray([
             'alignment' => [
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
             ],
@@ -155,7 +146,7 @@ class UmrahPackagesExport implements FromCollection, WithHeadings, WithMapping, 
         ]);
 
         // Atur lebar kolom otomatis
-        foreach (range('A', 'K') as $columnID) {
+        foreach (range('A', 'I') as $columnID) {
             $sheet->getColumnDimension($columnID)->setAutoSize(true);
         }
 

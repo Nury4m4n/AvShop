@@ -20,10 +20,10 @@
     @endif
 
     <div class="container mt-5">
-        <h1 class="mb-4 text-center">Tambah Anggota Tim</h1>
+        <h1 class="mb-4 text-center">Tambah Admin</h1>
         <div class="card mb-4">
             <div class="card-header">
-                <h5 class="m-0">Form Tambah Anggota Tim</h5>
+                <h5 class="m-0">Form Tambah Admin</h5>
             </div>
             <div class="card-body">
                 <form action="{{ route('teams.store') }}" method="POST" enctype="multipart/form-data">
@@ -31,7 +31,7 @@
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama Anggota</label>
                         <input type="text" name="name" id="name" class="form-control" required
-                            placeholder="Masukkan nama anggota" value="{{ old('name') }}">
+                            placeholder="Masukkan nama Admin" value="{{ old('name') }}">
                         @error('name')
                             <div class="text-danger mt-2">{{ $message }}</div>
                         @enderror

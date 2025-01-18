@@ -6,7 +6,7 @@
             <!--Grid: Pesanan dan Informasi Pemesan -->
             <div class="col-lg-12 mb-4">
                 <div class="card shadow-sm">
-                    <div class="card-header bg-maroon text-white text-center">
+                    <div class="card-header text-white text-center" style="background-color: var(--maroon1)">
                         <h4 class="mb-0">Detail Pesanan dan Informasi Pemesan</h4>
                     </div>
                     <div class="card-body">
@@ -98,10 +98,16 @@
         </div>
 
         <!-- Tombol Aksi -->
-        <div class="text-end mt-4">
+        {{-- <div class="text-end mt-4">
             @if ($order->status === 'Paid')
                 <a href="{{ route('cart.downloadReceipt', $order->id) }}" class="btn btn-success" target="_blank">Download
                     Resi PDF</a>
+            @else
+                <button type="button" class="btn btn-success btn-lg" id="pay-button">Bayar Sekarang</button>
+            @endif
+        </div> --}}
+        <div class="text-end mt-4">
+            @if ($order->status === 'Paid')
             @else
                 <button type="button" class="btn btn-success btn-lg" id="pay-button">Bayar Sekarang</button>
             @endif

@@ -19,19 +19,19 @@
         </script>
     @endif
     <div class="container mt-4">
-        <h1 class="mb-4 text-center">Tambah Paket Umrah</h1>
+        <h1 class="mb-4 text-center">Tambah Anggrek</h1>
         <div class="card mb-4">
             <div class="card-header">
-                <h5 class="m-0">Form Tambah Paket Umrah</h5>
+                <h5 class="m-0">Form Tambah Anggrek</h5>
             </div>
             <div class="card-body">
                 <form action="{{ route('umrah-packages.store') }}" method="POST" enctype="multipart/form-data"
                     onsubmit="return formatPriceBeforeSubmit();">
                     @csrf
                     <div class="mb-3">
-                        <label for="main_package_name" class="form-label">Nama Paket Utama</label>
+                        <label for="main_package_name" class="form-label">Nama Anggrek</label>
                         <input type="text" name="main_package_name" id="main_package_name" class="form-control" required
-                            placeholder="Masukkan nama paket" value="{{ old('main_package_name') }}">
+                            placeholder="Masukkan Nama Anggrek" value="{{ old('main_package_name') }}">
                         @error('main_package_name')
                             <div class="text-danger mt-2">{{ $message }}</div>
                         @enderror
@@ -39,7 +39,7 @@
                     <div class="mb-3">
                         <label for="price" class="form-label">Harga</label>
                         <input type="text" id="price" name="price" class="form-control" required
-                            placeholder="Harga varian" oninput="formatCurrency(this)" maxlength="20"
+                            placeholder="Masukan Harga Anggrek" oninput="formatCurrency(this)" maxlength="20"
                             value="{{ old('price') }}">
                         @error('price')
                             <div class="text-danger mt-2">{{ $message }}</div>
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="image" class="form-label">Brosur</label>
+                        <label for="image" class="form-label">Gambar Anggrek</label>
                         <input type="file" name="image" id="image" class="form-control" accept="image/*" required>
                         @error('image')
                             <div class="text-danger mt-2">{{ $message }}</div>

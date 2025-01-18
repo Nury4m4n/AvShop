@@ -18,18 +18,18 @@
     @endif
     <div class="container-fluid mt-4">
 
-        <h1 class="text-center mb-4">Paket Umrah</h1>
+        <h1 class="text-center mb-4">Daftar Anggrek</h1>
         <div class="card mb-4">
             <div class="card-header bg-white border-0">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="m-0 text-dark">Daftar Paket Umrah</h5>
+                    <h5 class="m-0 text-dark">Daftar Anggrek</h5>
                     <a href="{{ route('umrah-packages.create') }}" class="btn btn-success btn-sm">
                         Tambah <i class='bx bx-plus'></i>
                     </a>
                 </div>
                 <form action="{{ route('umrah-packages.index') }}" method="GET">
                     <div class="row align-items-end g-3">
-                        <div class="col-md-4">
+                        <div class="col-md-10">
                             <label for="name" class="form-label">Nama Paket</label>
                             <input type="text" name="name" id="name" class="form-control"
                                 placeholder="Cari Nama Paket" value="{{ request('name') }}">
@@ -51,7 +51,7 @@
                             <tr>
                                 <th>No</th>
                                 <!--<th>Brosur</th>-->
-                                <th>Nama Paket Utama</th>
+                                <th>Nama Anggrek</th>
                                 <th>Harga</th>
                                 <th>Aksi</th>
                             </tr>

@@ -19,10 +19,10 @@
         </script>
     @endif
     <div class="container mt-4">
-        <h1 class="mb-4 text-center">Edit Paket {{ $package->main_package_name }}</h1>
+        <h1 class="mb-4 text-center">Edit Anggrek: {{ $package->main_package_name }}</h1>
         <div class="card mb-4">
             <div class="card-header">
-                <h5 class="m-0">Form Edit Paket Umrah</h5>
+                <h5 class="m-0">Form Edit Anggrek</h5>
             </div>
             <div class="card-body">
                 <form action="{{ route('umrah-packages.update', $package->id) }}" method="POST" enctype="multipart/form-data"
@@ -30,9 +30,9 @@
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
-                        <label for="main_package_name" class="form-label">Nama Paket Utama</label>
+                        <label for="main_package_name" class="form-label">Nama Anggrek</label>
                         <input type="text" name="main_package_name" id="main_package_name" class="form-control" required
-                            placeholder="Masukkan nama paket"
+                            placeholder="Masukkan nama Anggrek"
                             value="{{ old('main_package_name', $package->main_package_name) }}">
                         @error('main_package_name')
                             <div class="text-danger mt-2">{{ $message }}</div>
@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="image" class="form-label">Brosur</label>
+                        <label for="image" class="form-label">Gambar Anggrek</label>
                         <input type="file" name="image" id="image" class="form-control" accept="image/*">
                         @if ($package->image)
                             <div class="mt-2">

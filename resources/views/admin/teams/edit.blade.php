@@ -20,10 +20,10 @@
     @endif
 
     <div class="container mt-5">
-        <h1 class="mb-4 text-center">Edit Anggota Tim {{ $teamMember->name }}</h1>
+        <h1 class="mb-4 text-center">Edit Admin {{ $teamMember->name }}</h1>
         <div class="card mb-4">
             <div class="card-header">
-                <h5 class="m-0">Form Edit Anggota Tim</h5>
+                <h5 class="m-0">Form Edit Admin</h5>
             </div>
             <div class="card-body">
                 <form action="{{ route('teams.update', $teamMember->id) }}" method="POST" enctype="multipart/form-data">
