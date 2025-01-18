@@ -5,12 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Carousel;
 use App\Models\PackageVariant;
 use App\Models\Team;
-use App\Models\Promo;
 use App\Models\Testimonial;
 use App\Models\UmrahPackage;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -18,8 +15,8 @@ class HomeController extends Controller
     {
         return view('Home.pages.about', [
             'meta' => $this->getMetaData(
-                'Tentang Kami | Smarts Umrah Bandung',
-                'Informasi Lengkap tentang Smart Umrah Bandung dan Layanan Umrah Kami.',
+                'Tentang Kami | AverseShop ',
+                'Informasi Lengkap tentang AverseShop  dan Layanan Kami.',
                 asset('img/welcome.jpg')
             )
         ]);
@@ -31,14 +28,12 @@ class HomeController extends Controller
         return view('Home.pages.contact', [
             'teamMember' => $teamMember,
             'meta' => $this->getMetaData(
-                'Kontak Kami | Smarts Umrah Bandung',
-                'Hubungi kami untuk informasi lebih lanjut tentang layanan umrah dari Smarts Umrah Bandung.',
+                'Kontak Kami | AverseShop ',
+                'Hubungi kami untuk informasi lebih lanjut tentang layanan dari AverseShop .',
                 asset('img/welcome.jpg')
             )
         ]);
     }
-
-
 
     public function welcome()
     {
@@ -49,12 +44,13 @@ class HomeController extends Controller
             'testimonials' => $testimonials,
             'carousels' => $carousels,
             'meta' => $this->getMetaData(
-                'Selamat Datang di Smarts Umrah Bandung',
-                'Paket Umrah Berkualitas dari Smart Umrah Bandung: Temukan Layanan Terbaik untuk Perjalanan Ibadah Anda.',
+                'Selamat Datang di AverseShop ',
+                'Produk Berkualitas dari AverseShop : Temukan Layanan Terbaik untuk Kebutuhan Anda.',
                 asset('img/welcome.jpg')
             )
         ]);
     }
+
     public function index()
     {
         $umrahPackages = UmrahPackage::with('packageVariants')->get();
@@ -62,8 +58,8 @@ class HomeController extends Controller
         return view('Home.pages.umrahprogram.umrahprogram', [
             'umrahPackages' => $umrahPackages,
             'meta' => $this->getMetaData(
-                'Paket Umrah | Smarts Umrah Bandung',
-                'Temukan Paket Umrah yang Tepat untuk Kebutuhan Anda di Smart Umrah Bandung',
+                'Produk | AverseShop ',
+                'Temukan Produk yang Tepat untuk Kebutuhan Anda di AverseShop .',
                 asset('img/welcome.jpg')
             )
         ]);
@@ -74,17 +70,15 @@ class HomeController extends Controller
         $umrahPackage = UmrahPackage::with('packageVariants')->findOrFail($packageId);
         $variants = $umrahPackage->packageVariants()->get();
 
-
         $cartTotalQuantity = \App\Models\Cart::where('user_id', auth()->id())->sum('quantity');
-
 
         return view('Home.pages.umrahprogram.umrah_program_variant', [
             'umrahPackage' => $umrahPackage,
             'cartTotalQuantity' => $cartTotalQuantity,
             'variants' => $variants,
             'meta' => $this->getMetaData(
-                'Variasi Paket Umrah | Smarts Umrah Bandung',
-                'Lihat variasi paket untuk umrah dari Smarts Umrah Bandung.',
+                'Variasi Produk | AverseShop ',
+                'Lihat variasi produk dari AverseShop .',
                 asset('img/welcome.jpg')
             )
         ]);
@@ -96,8 +90,8 @@ class HomeController extends Controller
         return view('Home.pages.umrahprogram.umrah_program_variant_detail', [
             'variant' => $variant,
             'meta' => $this->getMetaData(
-                $variant->name . ' Detail Paket Umrah | Smarts Umrah Bandung',
-                'Detail dari paket variasi umrah ' . $variant->name,
+                $variant->name . ' Detail Produk | AverseShop ',
+                'Detail dari variasi produk ' . $variant->name,
                 asset($variant->image)
             )
         ]);

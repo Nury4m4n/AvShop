@@ -1,7 +1,7 @@
 <div class="navbar">
     <div class="logo-details">
         <img src="{{ asset('img/logo.png') }}" alt="Logo">
-        <span class="logo_name me-4">Smarts Umrah</span>
+        <span class="logo_name me-4">Averse Shop</span>
         <div class="menu-btn-desktop" id="menu-btn-desktop">
             <i class='bx bx-menu'></i>
         </div>

@@ -1,0 +1,24 @@
+{
+    "name": "AVerse Shop",
+    "short_name": "AVShop",
+    "icons": [
+        {
+            "src": "android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "description": "AVerseShop adalah aplikasi inovatif yang mempermudah pengguna dalam menjelajahi dan memilih bunga Anggrek. Dengan antarmuka yang user-friendly dan fitur lengkap, pengguna dapat dengan mudah menemukan informasi terbaru tentang bunga anggrek.",
+    "orientation": "portrait",
+    "start_url": "/",
+    "lang": "id",
+    "scope": "/"
+}

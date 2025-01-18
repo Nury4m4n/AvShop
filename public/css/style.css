@@ -426,8 +426,9 @@ body {
 
 /* Page About Partner */
 .hero-image {
-    max-width: 90%;
+    max-width: 50%;
     height: auto;
+    padding: 20px;
 }
 
 .section-title {
